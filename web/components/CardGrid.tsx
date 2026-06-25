@@ -8,7 +8,6 @@ const MONUMENTS = [
     description:
       "The monumental Mughal marble mausoleum built of pure ivory-white stone. A UNESCO World Heritage Site and one of the seven wonders of the modern world.",
     image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=80",
-    featured: true,
   },
   {
     id: 2,
@@ -19,7 +18,6 @@ const MONUMENTS = [
     description:
       "The majestic red sandstone capital built by Emperor Akbar. Features magnificent palaces, mosques and courtyards frozen in sixteenth century grandeur.",
     image: "https://images.unsplash.com/photo-1587135941948-670b381f08ce?w=600&q=80",
-    featured: false,
   },
   {
     id: 3,
@@ -30,7 +28,6 @@ const MONUMENTS = [
     description:
       "The splendid precursor to the Taj Mahal. This grand red-sandstone garden tomb of the Mughal emperor set the template for Mughal funerary architecture.",
     image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80",
-    featured: false,
   },
   {
     id: 4,
@@ -41,7 +38,6 @@ const MONUMENTS = [
     description:
       "The massive octagonal military bastion and imperial home of Mughal dynasty rulers in Old Delhi, housing museums, palaces and the famous Diwan-i-Khas.",
     image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80",
-    featured: false,
   },
 ];
 
@@ -69,7 +65,7 @@ export default function CardGrid() {
         </div>
         <a
           href="/explore"
-          className="flex items-center gap-1 text-sm font-semibold text-gray-700 hover:text-[#2d1b4e] whitespace-nowrap pt-1 transition-colors shrink-0"
+          className="flex items-center gap-1 text-sm font-semibold text-gray-700 hover:text-[#582A4A] whitespace-nowrap pt-1 transition-colors shrink-0"
         >
           View Directory
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,24 +79,20 @@ export default function CardGrid() {
         {MONUMENTS.map((m) => (
           <div
             key={m.id}
-            className={`snap-start shrink-0 w-[280px] sm:w-[300px] rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm border transition-shadow hover:shadow-md ${
-              m.featured ? "ring-2 ring-[#2d1b4e]" : "border-gray-200"
-            }`}
+            className="group snap-start shrink-0 w-[280px] sm:w-[300px] rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-lg hover:scale-[1.02] hover:border-[#582A4A]"
           >
             {/* Image */}
             <div className="relative h-48 overflow-hidden">
               <img
                 src={m.image}
                 alt={m.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              {/* State badge */}
               <span
                 className={`absolute top-3 left-3 ${STATE_COLORS[m.state] ?? "bg-gray-600"} text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full`}
               >
                 {m.state}
               </span>
-              {/* Guide count badge */}
               <span className="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
                 {m.guidesActive} Guides Active
               </span>
@@ -111,21 +103,14 @@ export default function CardGrid() {
               <h3 className="font-bold text-gray-900 text-base">{m.name}</h3>
               <p className="text-xs text-gray-500 leading-relaxed line-clamp-3">{m.description}</p>
 
-              {/* Trust badges */}
               <div className="flex items-center gap-2 text-[11px] text-emerald-600 font-medium mt-auto pt-2">
                 <span>✓ Free Cancel</span>
                 <span className="text-gray-300">·</span>
                 <span>Verified Direct Rate</span>
               </div>
 
-              {/* CTA */}
-              <button
-                className={`w-full mt-2 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                  m.featured
-                    ? "bg-[#1a0a2e] text-white hover:bg-[#2d1b4e]"
-                    : "bg-white text-[#1a0a2e] border border-[#1a0a2e] hover:bg-[#1a0a2e] hover:text-white"
-                }`}
-              >
+              {/* CTA — identical across all cards, goes dark on hover */}
+              <button className="w-full mt-2 py-2.5 rounded-xl text-sm font-semibold border border-[#582A4A] text-[#582A4A] bg-white transition-colors duration-200 hover:bg-[#582A4A] hover:text-white">
                 INR {m.price.toLocaleString()} onwards&nbsp;|&nbsp;Find my guide
               </button>
             </div>
