@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAD Tours — Find Your Guide</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>MAD Tours</h1>
+    <p>Monument &amp; Attraction Discovery — meet the expert who lives for your destination.</p>
+  </header>
+
+  <main>
+    <section id="guides">
+      <h2>Available Guides</h2>
+      <div id="guide-list" class="guide-grid">
+        <p>Loading guides...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 MAD Tours. All rights reserved.</p>
+  </footer>
+
+  <script>
+    fetch("/api/guides")
+      .then((res) => res.json())
+      .then((guides) => {
+        const list = document.getElementById("guide-list");
+        list.innerHTML = guides
+          .map(
+            (g) => `
+          <div class="guide-card">
+            <h3>${g.name}</h3>
+            <p class="monument">${g.monument}, ${g.city}</p>
+            <p class="specialisation">${g.specialisation}</p>
+            <p class="languages">Languages: ${g.languages.join(", ")}</p>
+            <p class="rating">Rating: ${g.rating} ⭐ (${g.reviews} reviews)</p>
+            <p class="price">₹${g.pricePerHour}/hr</p>
+            <button onclick="alert('Booking coming soon!')">Book Now</button>
+          </div>`
+          )
+          .join("");
+      });
+  </script>
+</body>
+</html>

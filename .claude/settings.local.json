@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "PowerShell(gh auth status 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth status 2>&1)",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\karti\\\\OneDrive\\\\Documents\\\\MAD TOURS CLAUDE\\\\src\")"
+    ]
+  }
+}
