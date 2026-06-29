@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -22,10 +23,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          {/* Replace with <Image src="/logo.png"> once logo asset is added */}
-          <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-extrabold text-lg select-none">
-            M
-          </div>
+          <Image src="/logo.png" alt="MAD Tours Logo" width={40} height={40} className="rounded-full" />
           <div className="leading-tight">
             <div className="flex items-baseline gap-0.5">
               <span className="font-extrabold text-lg text-gray-900 tracking-tight">MADTours</span>

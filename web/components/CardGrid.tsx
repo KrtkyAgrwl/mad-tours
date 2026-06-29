@@ -1,7 +1,10 @@
+import Link from "next/link";
+
 const MONUMENTS = [
   {
     id: 1,
     name: "Taj Mahal",
+    slug: "taj-mahal",
     state: "Uttar Pradesh",
     guidesActive: 48,
     price: 1200,
@@ -12,6 +15,7 @@ const MONUMENTS = [
   {
     id: 2,
     name: "Fatehpur Sikri",
+    slug: null,
     state: "Uttar Pradesh",
     guidesActive: 22,
     price: 1000,
@@ -22,6 +26,7 @@ const MONUMENTS = [
   {
     id: 3,
     name: "Humayun's Tomb",
+    slug: null,
     state: "Delhi",
     guidesActive: 19,
     price: 1100,
@@ -32,6 +37,7 @@ const MONUMENTS = [
   {
     id: 4,
     name: "Red Fort",
+    slug: null,
     state: "Delhi",
     guidesActive: 35,
     price: 1150,
@@ -65,7 +71,7 @@ export default function CardGrid() {
         </div>
         <a
           href="/explore"
-          className="flex items-center gap-1 text-sm font-semibold text-gray-700 hover:text-[#582A4A] whitespace-nowrap pt-1 transition-colors shrink-0"
+          className="flex items-center gap-2 bg-[#582A4A] hover:bg-[#3D1A35] text-white text-sm font-bold tracking-wide px-5 py-2.5 rounded-full transition-colors shrink-0 whitespace-nowrap"
         >
           View Directory
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,8 +83,9 @@ export default function CardGrid() {
       {/* Card row */}
       <div className="mt-6 flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory">
         {MONUMENTS.map((m) => (
-          <div
+          <Link
             key={m.id}
+            href={m.slug ? `/monument/${m.slug}` : "#"}
             className="group snap-start shrink-0 w-[280px] sm:w-[300px] rounded-2xl overflow-hidden bg-white flex flex-col shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-lg hover:scale-[1.02] hover:border-[#582A4A]"
           >
             {/* Image */}
@@ -109,12 +116,11 @@ export default function CardGrid() {
                 <span>Verified Direct Rate</span>
               </div>
 
-              {/* CTA — identical across all cards, goes dark on hover */}
-              <button className="w-full mt-2 py-2.5 rounded-xl text-sm font-semibold border border-[#582A4A] text-[#582A4A] bg-white transition-colors duration-200 hover:bg-[#582A4A] hover:text-white">
+              <div className="w-full mt-2 py-2.5 rounded-xl text-sm font-semibold border border-[#582A4A] text-[#582A4A] bg-white transition-colors duration-200 group-hover:bg-[#582A4A] group-hover:text-white text-center">
                 INR {m.price.toLocaleString()} onwards&nbsp;|&nbsp;Find my guide
-              </button>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

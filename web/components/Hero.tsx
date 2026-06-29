@@ -135,9 +135,9 @@ export default function Hero() {
               </div>
             </button>
 
-            {/* Explore */}
+            {/* Search */}
             <button className="bg-[#582A4A] hover:bg-[#6e3460] text-white font-bold text-sm tracking-wider px-7 py-[18px] transition-colors rounded-r-full shrink-0">
-              EXPLORE
+              SEARCH
             </button>
           </div>
 
